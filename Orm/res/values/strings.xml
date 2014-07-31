@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Orm</string>
+    <string name="action_settings">Settings</string>
+    <string name="android">Android</string>
+    <string name="androrm">Androrm</string>
+	<string name="ormlite">Ormlite</string>
+	<string name="greendao">GreenDao</string>
+	
+	<string name="book">please input book name</string>
+	<string name="author">please input author</string>
+	<string name="search">search</string>
+	<string name="insert">insert</string>
+	<string name="delete">delete</string>
+</resources>

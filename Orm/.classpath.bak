@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="com/example/orm/androrm/Author.java|com/example/orm/androrm/Book.java|com/example/orm/AndrormActivity.java" kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="lib" path="libs/androrm.jar"/>
+	<classpathentry kind="lib" path="src/com/example/orm/AndrormActivity.java"/>
+	<classpathentry kind="lib" path="src/com/example/orm/androrm/Author.java"/>
+	<classpathentry kind="lib" path="src/com/example/orm/androrm/Book.java"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>
