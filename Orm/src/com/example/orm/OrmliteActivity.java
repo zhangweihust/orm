@@ -1,5 +1,6 @@
 package com.example.orm;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,7 @@ import com.example.orm.ormlite.Book;
 import com.example.orm.ormlite.DBHelper;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.stmt.PreparedUpdate;
 import com.j256.ormlite.stmt.SelectArg;
 
 
@@ -66,26 +68,39 @@ public class OrmliteActivity extends OrmLiteBaseActivity<DBHelper> implements On
 		switch (v.getId()) {
 		case R.id.btn_insert:
 			Book book = null;
+			mBookDAO.setAutoCommit(false);
 			for(int i=n; i< n+MainActivity.COUNT; i++){
 				book = new Book();
 				book.mDate = (new Date()).toString();
 				book.mPrice = 23.5 + i/100;
 				book.mTitle = MainActivity.BOOK + i;
 				book.mAuthorId = i%20;
+//				book.mAuthor=new Author("ï¿½ï¿½",i+1,"ï¿½ï¿½ï¿½ï¿½"+i);
 				mBookDAO.createIfNotExists(book);
+			}
+			try {
+				mBookDAO.commit(getHelper().getConnectionSource().getReadWriteConnection());
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 			n = n+MainActivity.COUNT;
 			tvInsertTime.setText("insert " + MainActivity.COUNT + " datas used "  + (System.currentTimeMillis()-startTime) + "milliseconds");
+			mBookDAO=getHelper().getBookDataDao();
 			break;
 		case R.id.btn_search:
-			/*mAuthorDao.queryBuilder().where().in("mName", "author1", "author2");
+//			mAuthorDao.queryBuilder().where().in("mName", "author1", "author2");
 			SelectArg userSelectArg = new SelectArg();
-			mAuthorDao.queryBuilder().selectColumns(arg0)
-			List<Book> result =  mBookDAO.queryBuilder().where().eq("mAuthorId", ).query();
+//			mAuthorDao.queryBuilder().selectColumns(0);
+			List<Book> result=null;
+			try {
+				result = mBookDAO.queryBuilder().query();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
 			System.out.println(result.size() + "");
 			tvSearchTime.setText("search in " + n + " datas used "  + (System.currentTimeMillis()-startTime) + "milliseconds");
-			*/break;
+			break;
 		default:
 			break;
 		}
@@ -94,12 +109,13 @@ public class OrmliteActivity extends OrmLiteBaseActivity<DBHelper> implements On
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
-		super.onDestroy();
 		deleteAll();
+		super.onDestroy();
+
 	}
 	
 	/**
-     * É¾³ýÈ«²¿
+     * É¾ï¿½ï¿½È«ï¿½ï¿½
      */
     private void deleteAll()
     {
@@ -107,7 +123,7 @@ public class OrmliteActivity extends OrmLiteBaseActivity<DBHelper> implements On
     }
     
     /**
-     * ²éÑ¯ËùÓÐµÄ
+     * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ðµï¿½
      */
     private List<Book> queryAll()
     {

@@ -51,7 +51,8 @@ public class DBHelper extends OrmLiteSqliteOpenHelper
         try
         {
             //建立User表
-            TableUtils.createTable(connectionSource, Book.class);
+        	TableUtils.createTable(connectionSource, Author.class);
+        	TableUtils.createTable(connectionSource, Book.class);
             //初始化DAO
             bookDao = getBookDao();
             bookRuntimeDao = getBookDataDao();

@@ -24,8 +24,10 @@ public class Book {
 	    @DatabaseField(canBeNull = false)
 	    public String mDate;
 	    
-	    @DatabaseField(defaultValue = "")
-	    public int mAuthorId ;
+//	    @DatabaseField(foreign = true, foreignAutoCreate = true, foreignAutoRefresh = true)
+//	    public Author mAuthor ;
+	    @DatabaseField
+	    public int mAuthorId;
 	    
 	    @DatabaseField(canBeNull = false)
 	    public String mTitle;

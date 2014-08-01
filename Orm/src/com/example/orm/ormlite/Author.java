@@ -29,7 +29,13 @@ public class Author {
 	    public String mName;
 	    
 	    public Author() {
-			// TODO Auto-generated constructor stub
+	    	
+		}
+	    
+	    public Author(String mSex,int mAge,String mName) {
+	    	this.mSex=mSex;
+	    	this.mAge=mAge;
+	    	this.mName=mName;
 		}
 
 }
